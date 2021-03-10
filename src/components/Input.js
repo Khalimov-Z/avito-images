@@ -1,15 +1,20 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {createComments} from "../redux/actions";
-import {useParams} from "react-router-dom"
-import {useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {addComments, createComments} from "../redux/actions";
+
 function Input(props) {
     const dispatch =useDispatch();
+    const comment = useSelector(state => state.imagesId.comment);
+    const images =useSelector(state => state.images.items);
+    const addComment = useSelector(state => state.imagesId.addComments)
 
     const handleChangeComment= (e)=>{
         dispatch(createComments(e.target.value))
     }
+   const handleAddComment = () => {
+      dispatch(addComments(comment ))
+   }
     return (
         <div className="input-main" >
             <div>
@@ -18,13 +23,14 @@ function Input(props) {
                         <input type="text" placeholder="Ваше имя"/>
                     </div>
                     <div >
-                        <input  onChange={() => handleChangeComment(props.id)} type="text" placeholder="Ваш комментарий"/>
+                        <input value={comment}  onChange={ handleChangeComment} type="text" placeholder="Ваш комментарий"/>
                     </div>
                 </form>
-               <Link to={`/${props.id}`}>
-                   <button className="content-button">Оставить комментарий</button>
-               </Link>
+
+                    <button onClick={handleAddComment} className="content-button">Оставить комментарий</button>
+
             </div>
+
         </div>
     );
 }

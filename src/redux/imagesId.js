@@ -1,5 +1,7 @@
 const initialState = {
     items:[],
+    comment:[],
+    addComments:[],
     loading : false
 }
 const imagesIdReducer = (state = initialState,action) => {
@@ -15,6 +17,17 @@ const imagesIdReducer = (state = initialState,action) => {
                 items: action.payload,
                 loading: false
             }
+        case "comments/create":
+            return {
+                ...state,
+                comment: action.payload
+            }
+        case "comments/add":
+            return {
+                ...state,
+                addComments: action.payload
+            }
+
 
 
         default:

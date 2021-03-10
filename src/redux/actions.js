@@ -25,18 +25,14 @@ export const loadImagesId =(id) => {
     }
 }
 export const createComments =(comments) => {
-    return (dispatch) => {
-        dispatch({type:"comments/create/start"})
-        fetch(`https://boiling-refuge-66454.herokuapp.com/images/${comments}`,{
-            method:"POST",
-            body:JSON.stringify()
-        })
-            .then(response => response.json())
-            .then(json => {
-                dispatch({
-                    type:"comments/create/success",
-                    payload: json
-                })
-            })
+    return{
+        type:"comments/create",
+        payload:comments
+    }
+}
+export const addComments =(comments) => {
+    return{
+        type:"comments/add",
+        payload:comments
     }
 }
