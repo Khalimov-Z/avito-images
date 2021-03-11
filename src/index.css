@@ -6,6 +6,7 @@ body{
     max-width: 960px;
     margin: auto;
     flex-wrap: wrap;
+    position: relative;
 
 
 }
