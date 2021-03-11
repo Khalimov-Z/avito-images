@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useParams , Route} from  "react-router-dom"
-import {loadImagesId} from "../redux/actions";
+import {useParams } from  "react-router-dom"
+import {deleteModal, loadImagesId} from "../redux/actions";
 import {useEffect} from "react";
 import Input from "./Input";
 
@@ -17,39 +17,43 @@ function ImagesId(props) {
             dispatch(loadImagesId(id))
         }
     }, [id, dispatch]);
-    const imagesId = useSelector(state => state.imagesId.items)
+    const imagesId = useSelector(state => state.imagesId.items);
 
+   const handleDeleteModal=(id,) => {
+       dispatch(deleteModal(id))
+   }
 
     return (
-        <>
-            <div className="content-image">
-                <div>
-                    {<img className="imj-content" src={imagesId.url} alt=""/>}
+            <div className= {imagesId.url ? 'modal': false}>
+                <div className={ imagesId.url ?'content-modal':false}>
+                <div className="content-image ">
+                        {<img className={imagesId.url&&"imj-content"} src={imagesId.url} alt=""/>}
+                    <div>
+                        {imagesId["comments"] ? imagesId["comments"].map((w,index) => {
+                                return (
+                                    <>
+                                        <div key={index} className="content-date">
+                                            {new Date(w.date).toISOString().substr(0, 10)}
+                                        </div>
+                                        <div className="content-text">
+                                            {w.text}
+                                        </div>
+                                        <div className="addComment">
+                                            {addComment}
+                                        </div>
+                                    </>
+                                )
+                            })
+                            : ""}
+
+                    </div>
+                    <span onClick={() =>handleDeleteModal(imagesId.id)}
+                          className={imagesId.url?"delete-modal":"no-delete"}>X</span>
                 </div>
-                <div>
-                    {imagesId["comments"] ? imagesId["comments"].map(w => {
-                            return (
-                                <>
-                                    <div className="content-date">
-                                        {new Date(w.date).toISOString().substr(0, 10)}
-                                    </div>
-                                    <div className="content-text">
-                                        {w.text}
-                                    </div>
-                                    <div className="addComment">
-                                        {addComment}
-                                    </div>
-
-
-                                </>
-                            )
-                        })
-                        : ""}
+                {imagesId.url ? (<Input id={imagesId}/>) : false}
                 </div>
 
-            </div>
-            {imagesId.url ? (<Input id={imagesId}/>) : false}
-        </>
+                </div>
     );
 }
 

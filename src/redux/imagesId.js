@@ -27,6 +27,14 @@ const imagesIdReducer = (state = initialState,action) => {
                 ...state,
                 addComments: action.payload
             }
+        case "modal/delete":
+            return {
+                ...state,
+                items:`${state.items.id === action.payload ?false:true``}`,
+                addComments: "",
+                comment: ""
+
+            }
 
 
 

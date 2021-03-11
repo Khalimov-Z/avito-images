@@ -11,8 +11,6 @@ function Images(props) {
                 return <Image key={image.id} image={image} />
             })}
 
-
-
         </div>
     );
 }

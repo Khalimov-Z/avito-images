@@ -1,13 +1,10 @@
-import React from 'react';
-import {Link, useParams} from "react-router-dom";
+
 import {useDispatch, useSelector} from "react-redux";
 import {addComments, createComments} from "../redux/actions";
 
 function Input(props) {
     const dispatch =useDispatch();
     const comment = useSelector(state => state.imagesId.comment);
-    const images =useSelector(state => state.images.items);
-    const addComment = useSelector(state => state.imagesId.addComments)
 
     const handleChangeComment= (e)=>{
         dispatch(createComments(e.target.value))
