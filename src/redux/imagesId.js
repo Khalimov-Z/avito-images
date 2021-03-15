@@ -1,7 +1,6 @@
 const initialState = {
-    items:[],
-    comment:[],
-    addComments:[],
+    url:null,
+    comments:[],
     loading : false
 }
 const imagesIdReducer = (state = initialState,action) => {
@@ -14,7 +13,8 @@ const imagesIdReducer = (state = initialState,action) => {
         case "imagesId/load/success":
             return {
                 ...state,
-                items: action.payload,
+                url: action.payload.url,
+                comments: action.payload.comments,
                 loading: false
             }
         case "comments/create":
@@ -25,18 +25,13 @@ const imagesIdReducer = (state = initialState,action) => {
         case "comments/add":
             return {
                 ...state,
-                addComments: action.payload
+                comments: [...state.comments ,{
+                    text:action.payload,
+                    date:new Date()
+                }]
             }
         case "modal/delete":
-            return {
-                ...state,
-                items:`${state.items.id === action.payload ?false:true``}`,
-                addComments: "",
-                comment: ""
-
-            }
-
-
+            return initialState;
 
         default:
             return state;

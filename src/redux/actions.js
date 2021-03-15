@@ -36,9 +36,8 @@ export const addComments =(comments) => {
         payload:comments
     }
 }
-export const deleteModal =(id) => {
+export const deleteModal =() => {
     return{
-        type:"modal/delete",
-        payload:id,
+        type:"modal/delete"
     }
 }

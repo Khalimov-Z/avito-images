@@ -10,7 +10,7 @@ function Input(props) {
         dispatch(createComments(e.target.value))
     }
    const handleAddComment = () => {
-      dispatch(addComments(comment ))
+      dispatch(addComments(comment))
    }
     return (
         <div className="input-main" >

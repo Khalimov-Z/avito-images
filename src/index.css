@@ -9,6 +9,15 @@ body{
     position: relative;
 
 
+
+}
+.deactivate{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000ab;
 }
 .header{
     text-align: center;
@@ -52,6 +61,10 @@ body{
     margin: auto;
     width: 100%;
 
+
+}
+.rod{
+
 }
 .content-date{
     margin-left: 20px;
@@ -62,6 +75,9 @@ body{
 .content-text{
     font-size: 18px;
     margin-left: 20px;
+    max-width: 300px;
+    text-align: start;
+    word-wrap: break-word;
 
 }
 .input-main{
@@ -110,36 +126,22 @@ input{
     left: 0;
     padding-top: 20px;
 }
-.modal{
-    width: 100%;
-    background-color: #000000ab;
-    z-index:10000;
-    position:absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: block;
-    padding-top: 550px;
 
-
-}
-.no-delete{
-    display: none;
-}
 
 
 .delete-modal{
-    margin-left: 200px;
     cursor: pointer;
     padding: 0;
     height: 0;
+    position: absolute;
+    left: 750px;
 
 }
 .fasad{
     margin-top: 300px;
 }
 
-.modal, .content-modal {
+.content-modal {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
